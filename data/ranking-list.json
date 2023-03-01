@@ -1,0 +1,62 @@
+[
+	{
+		"order": 1,
+		"xzqh_code": "330181",
+		"xzqh_name": "萧山市",
+		"risk_value": 51.21
+	},
+	{
+		"order": 2,
+		"xzqh_code": "330205",
+		"xzqh_name": "江北区",
+		"risk_value": 48.07
+	},
+	{
+		"order": 3,
+		"xzqh_code": "330402",
+		"xzqh_name": "秀城区",
+		"risk_value": 20.49
+	},
+	{
+		"order": 4,
+		"xzqh_code": "330621",
+		"xzqh_name": "绍兴县",
+		"risk_value": 8.64
+	},
+	{
+		"order": 5,
+		"xzqh_code": "330322",
+		"xzqh_name": "洞头县",
+		"risk_value": 4.4
+	},
+	{
+		"order": 6,
+		"xzqh_code": "330282",
+		"xzqh_name": "慈溪市",
+		"risk_value": 4.21
+	},
+	{
+		"order": 7,
+		"xzqh_code": "330329",
+		"xzqh_name": "泰顺县",
+		"risk_value": 5.48
+	},
+	{
+		"order": 8,
+		"xzqh_code": "330727",
+		"xzqh_name": "磐安县",
+		"risk_value": 1.63
+	},
+	{
+		"order": 9,
+		"xzqh_code": "331121",
+		"xzqh_name": "青田县",
+		"risk_value": 1.26
+	},
+	{
+		"order": 10,
+		"xzqh_code": "331002",
+		"xzqh_name": "椒江区",
+		"risk_value": 1.21
+	}
+]

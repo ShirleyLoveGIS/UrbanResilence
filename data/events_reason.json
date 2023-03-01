@@ -1,0 +1,32 @@
+[
+	{
+		"code": "A",
+		"reason": "自身结构隐患",
+		"alias": "自身结构隐患",
+		"count": 69
+	},
+	{
+		"code": "B",
+		"reason": "外力导致",
+		"alias": "外力导致",
+		"count": 17
+	},
+	{
+		"code": "C",
+		"reason": "环境因素",
+		"alias": "环境因素",
+		"count": 6
+	},
+	{
+		"code": "D",
+		"reason": "原因不明",
+		"alias": "原因不明",
+		"count": 5
+	},
+	{
+		"code": "E",
+		"reason": "管理缺陷",
+		"alias": "管理缺陷",
+		"count": 2
+	}	
+]

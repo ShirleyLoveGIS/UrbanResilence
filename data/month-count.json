@@ -1,0 +1,74 @@
+[
+	{
+		"month": "1月",
+		"total_counts": 254,
+		"pre_counts": 10,
+		"avg_counts": 19.25
+	},
+	{
+		"month": "2月",
+		"total_counts": 214,
+		"pre_counts": 12,
+		"avg_counts": 18.29
+	},
+	{
+		"month": "3月",
+		"total_counts": 277,
+		"pre_counts": 17,
+		"avg_counts": 17.77
+	},
+	{
+		"month": "4月",
+		"total_counts": 227,
+		"pre_counts": 20,
+		"avg_counts": 17.31
+	},
+	{
+		"month": "5月",
+		"total_counts": 282,
+		"pre_counts": 19,
+		"avg_counts": 15.16
+	},
+	{
+		"month": "6月",
+		"total_counts": 262,
+		"pre_counts": 15,
+		"avg_counts": 14.06
+	},
+	{
+		"month": "7月",
+		"total_counts": 304,
+		"pre_counts": 12,
+		"avg_counts": 14.29
+	},
+	{
+		"month": "8月",
+		"total_counts": 320,
+		"pre_counts": 16,
+		"avg_counts": 13.58
+	},
+	{
+		"month": "9月",
+		"total_counts": 248,
+		"pre_counts": 20,
+		"avg_counts": 14.07
+	},
+	{
+		"month": "10月",
+		"total_counts": 301,
+		"pre_counts": 23,
+		"avg_counts": 13
+	},
+	{
+		"month": "11月",
+		"total_counts": 407,
+		"pre_counts": 24,
+		"avg_counts": 13.88
+	},
+	{
+		"month": "12月",
+		"total_counts": 354,
+		"pre_counts": 16,
+		"avg_counts": 14.65
+	}
+]
