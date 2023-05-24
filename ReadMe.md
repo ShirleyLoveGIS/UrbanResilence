@@ -60,8 +60,8 @@ Adress | 道里区友谊路段
 #### 事故原因 events_reason
 ```sql
 CREATE VIEW `events_reason` AS SELECT
-Reason as 事故原因, 
-COUNT(*) as 事故数量
+Reason as Reason, 
+COUNT(*) as ReasonCounts
 FROM original_events
 GROUP BY Reason
 ```
@@ -69,14 +69,14 @@ GROUP BY Reason
 序号|字段名|标识符|类型及长度|有无空值
 ------ | ------ | ------ | ------ | ------
 1|事故原因|Reason|date|无
-2|事故数量|Counts|int|无
+2|事故数量|ReasonCounts|int|无
 
 #### 月份历史总量统计 month-countAll
 ```sql
 CREATE VIEW `month-countAll` AS 
 select 
-DATE_FORMAT(NewsT,'%m') as 月份,
-count(*) as 历史总量
+DATE_FORMAT(NewsT,'%m') as month,
+count(*) as AllCounts
 FROM original_events 
 GROUP BY DATE_FORMAT(NewsT,'%m') 
 ORDER BY DATE_FORMAT(NewsT,'%m')
@@ -92,8 +92,8 @@ ORDER BY DATE_FORMAT(NewsT,'%m')
 ```sql
 CREATE VIEW `month-countLy` AS 
 select 
-DATE_FORMAT(NewsT,'%m') as 月份,
-count(*) as 去年同期数量
+DATE_FORMAT(NewsT,'%m') as month,
+count(*) as LyCounts
 FROM original_events 
 GROUP BY DATE_FORMAT(NewsT,'%m') 
 ORDER BY DATE_FORMAT(NewsT,'%m')
@@ -109,12 +109,12 @@ ORDER BY DATE_FORMAT(NewsT,'%m')
 ```sql
 CREATE VIEW `month-countAvgm` AS 
 SELECT 
-DATE_FORMAT(NewsT,'%m') as 月份,
+DATE_FORMAT(NewsT,'%m') as month,
 count(*)
 /
 (SELECT count(DATE_FORMAT(NewsT,'%Y'))
 FROM original_events) 
-as 平均数量
+as AvgmCounts
 FROM original_events 
 GROUP BY DATE_FORMAT(NewsT,'%m')
 ORDER BY DATE_FORMAT(NewsT,'%m')
@@ -137,7 +137,7 @@ SELECT
 count(distinct DATE_FORMAT(NewsT,'%Y'))
 FROM original_events
 )
-as 平均全年总数
+as Avgycounts
 FROM original_events
 ```
 
@@ -150,8 +150,8 @@ FROM original_events
 ```sql
 CREATE VIEW `ranking-list` AS 
 SELECT
-District as 区域,
-count(*) as 数量
+District as district,
+count(*) as DistrictCounts
 FROM original_events
 GROUP BY District
 ```
@@ -166,8 +166,8 @@ GROUP BY District
 ```sql
 CREATE VIEW `region-count` AS 
 SELECT
-Province as 省份,
-count(*) as 数量
+Province as province,
+count(*) as RegionCounts
 FROM original_events
 GROUP BY Province
 ```

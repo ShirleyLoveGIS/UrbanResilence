@@ -146,16 +146,16 @@
 						formatter: function(params) {
 							const param = params[0];
 							const marker = '<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#e6b600;"></span>';
-							const suffix = '<span style="margin-left:5px;font-size:12px;">亿元</span>';
-							return param.name + "<br />" +
+							const suffix = '<span style="margin-left:5px;font-size:12px;"></span>';
+							return   param.name+"<br />" +
 								marker + "排名：" + (param.dataIndex+1) + "<br />" +
-								marker + "市价总值：" + param.value + suffix;
+								marker + "塌陷事件数："+ param.data  + suffix;
 						}
 					},
 					grid: {
 						top: 10,
 						bottom: 10,
-						left: 60
+						left: 70
 					},
 					xAxis: {
 						show: false,
@@ -210,7 +210,7 @@
 				};
 				rankChart.setOption(rankChartOpt);
 				$.ajax({
-					url: "data/ranking-list.json",
+					url: "http://127.0.0.1:8000/daping/ranking_list",
 					dataType: "json"
 				}).done(function() {
 					$("#rankChart").addClass("chart-done");
@@ -219,8 +219,8 @@
 					const xData = [];
 					const yData = [];
 					for(let i in data) {
-						xData.push(data[i].risk_value);
-						yData.push(data[i].xzqh_name);
+						xData.push(data[i].fields.DistrictCounts);
+						yData.push(data[i].pk);
 					}
 					rankChart.setOption({
 						yAxis: {
@@ -438,7 +438,7 @@
 				};
 				trendChart.setOption(trendChartOpt);
 				$.ajax({
-					url: "data/month-count.json",
+					url: "http://127.0.0.1:8000/daping/month_countall",
 					dataType: "json"
 				}).done(function() {
 					$("#trendChart").addClass("chart-done");
@@ -449,8 +449,8 @@
 					const yData2 = [];
 					const yData3 = [];
 					for(let i in data) {
-						xData.push(data[i].month);
-						yData1.push(data[i].total_counts);
+						xData.push(data[i].pk);
+						yData1.push(data[i].fields.AllCounts);
 						yData2.push(data[i].pre_counts);
 						yData3.push(data[i].avg_counts);
 					}
