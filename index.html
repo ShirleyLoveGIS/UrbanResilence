@@ -503,7 +503,7 @@
 				};
 				reasonChart.setOption(csrcChartOpt);
 				$.ajax({
-					url: "data/events_reason.json",
+					url: "http://127.0.0.1:8000/daping/events_reason",
 					dataType: "json"
 				}).done(function() {
 					$("#csrcChart").addClass("chart-done");
@@ -511,8 +511,8 @@
 					const chartData = [];
 					for(let i in data) {
 						chartData.push({
-							name: data[i].alias,
-							value: data[i].count
+							name: data[i].pk,
+							value: data[i].fields.reasoncounts
 						});
 					}
 					reasonChart.setOption({
