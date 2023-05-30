@@ -449,14 +449,14 @@
 					const yData2 = [];
 					const yData3 = [];
 					for(let i in data) {
-						xData.push(data[i].pk);
-						yData1.push(data[i].fields.AllCounts);
-						yData2.push(data[i].pre_counts);
-						yData3.push(data[i].avg_counts);
+						xData.push(data[i].pk)
+						yData1[data[i].pk-1]=(data[i].fields.AllCounts);
+						yData2[i-12]=(data[i].fields.LyCounts);
+						yData3.push(data[i].fields.AvgmCounts);
 					}
 					trendChart.setOption({
 						xAxis: {
-							data: xData,
+							data: [1,2,3,4,5,6,7,8,9,10,11,12],
 						},
 						series: [{
 							name: "历史总量",
