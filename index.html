@@ -241,7 +241,7 @@
 					tooltip: {
 						formatter: function(params) {
 							const data = params.data;
-							return data.name + "<br />风险值：" + data.value;
+							return data.name + "<br />塌陷事件数：" + data.value;
 						}
 					},
 					visualMap: {
@@ -438,7 +438,7 @@
 				};
 				trendChart.setOption(trendChartOpt);
 				$.ajax({
-					url: "http://127.0.0.1:8000/daping/month_countall",
+					url: "http://127.0.0.1:8000/daping/getmonth",
 					dataType: "json"
 				}).done(function() {
 					$("#trendChart").addClass("chart-done");
