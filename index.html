@@ -329,8 +329,8 @@
 					grid: {
 						top: 40,
 						bottom: 50,
-						left: 60,
-						right: 60
+						left: 30,
+						right: 30
 					},
 					xAxis: {
 						type: "category",
@@ -396,7 +396,7 @@
 						type: "pictorialBar",
 						yAxisIndex: 1,
 						symbol: 'path://d="M150 50 L130 130 L170 130  Z"',
-						barCategoryGap: "50%",
+						barCategoryGap: "30%",
 						itemStyle: {
 							color: function(params) {
 								if(params.dataIndex >= 11) {
@@ -438,7 +438,7 @@
 				};
 				trendChart.setOption(trendChartOpt);
 				$.ajax({
-					url: "http://127.0.0.1:8000/daping/month_countall",
+					url: "http://127.0.0.1:8000/daping/getmonth",
 					dataType: "json"
 				}).done(function() {
 					$("#trendChart").addClass("chart-done");
@@ -450,13 +450,38 @@
 					const yData3 = [];
 					for(let i in data) {
 						xData.push(data[i].pk);
-						yData1.push(data[i].fields.AllCounts);
-						yData2.push(data[i].pre_counts);
-						yData3.push(data[i].avg_counts);
 					}
+	
+					j=0;
+					for(let i in data){
+						if(data[j].fields.AvgmCounts>=0){					    						
+					        yData3[data[j].pk-1]=(data[j].fields.AvgmCounts);
+						    j++;
+						}
+						else{
+							break;
+						}
+					}
+
+					for(let i in data){
+						if(data[j].fields.LyCounts>=0){					    						
+					        yData2[data[j].pk-1]=(data[j].fields.LyCounts);
+						    j++;
+						}
+						else{
+							break;
+						}
+					}
+
+					for(let j in data){			
+					        yData1[data[j].pk-1]=(data[j].fields.AllCounts);
+						    j++;
+						}
+					
+
 					trendChart.setOption({
 						xAxis: {
-							data: xData,
+							data: [1,2,3,4,5,6,7,8,9,10,11,12],
 						},
 						series: [{
 							name: "历史总量",
