@@ -241,7 +241,7 @@
 					tooltip: {
 						formatter: function(params) {
 							const data = params.data;
-							return data.name + "<br />风险值：" + data.value;
+							return data.name + "<br />塌陷事件数：" + data.value;
 						}
 					},
 					visualMap: {
@@ -482,6 +482,7 @@
 					trendChart.setOption({
 						xAxis: {
 							data: [1,2,3,4,5,6,7,8,9,10,11,12],
+							data: [1,2,3,4,5,6,7,8,9,10,11,12],
 						},
 						series: [{
 							name: "历史总量",
@@ -528,7 +529,7 @@
 				};
 				reasonChart.setOption(csrcChartOpt);
 				$.ajax({
-					url: "data/events_reason.json",
+					url: "http://127.0.0.1:8000/daping/events_reason",
 					dataType: "json"
 				}).done(function() {
 					$("#csrcChart").addClass("chart-done");
@@ -536,8 +537,8 @@
 					const chartData = [];
 					for(let i in data) {
 						chartData.push({
-							name: data[i].alias,
-							value: data[i].count
+							name: data[i].pk,
+							value: data[i].fields.reasoncounts
 						});
 					}
 					reasonChart.setOption({
