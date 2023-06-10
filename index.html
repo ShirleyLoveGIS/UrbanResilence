@@ -12,27 +12,28 @@
 		<header id="header">
 			<h3 class="header-title">城市路面塌陷风险体检平台</h3>
 			<div class="header-info header-info-l">数据来源：百度新闻</div>
-			<div class="header-info header-info-r">数据日期：2022年11月</div>
+			<div class="header-info header-info-r">数据日期：2023年5月</div>
 		</header>
 		
 		<footer id="footer"></footer>
-		
 		<div id="container">
 			<div id="flexCon">
 				<div class="flex-row">
 					<div class="flex-cell flex-cell-l">
 						<div class="chart-wrapper">
-							<h3 class="chart-title">风险点Top10</h3>
+							<h3 class="chart-title">风险点排行</h3>
 							<div class="chart-div" id="rankChart">
 								<div class="chart-loader"><div class="loader"></div></div>
 							</div>
 						</div>
 					</div>
-					<div class="flex-cell flex-cell-c" style="padding-right:0;">
+					 <div class="flex-cell flex-cell-c" style="padding-right:0;"> 
 						<div class="chart-wrapper">
-							<h3 class="chart-title">11月统计数据</h3>
-							<div class="chart-div chart-done">
-								<table class="data-t">
+						    <h3  class="chart-title">江苏省风险区划</h3>
+							<div class="chart-div" id="mapChart2">
+								<div class="chart-loader"><div class="loader"></div></div>
+							<!-- <div class="chart-div chart-done"> -->
+								<!-- <table class="data-t">
 									<tr>
 										<th><img src="img/icon-01.png" /></th>
 										<td>
@@ -46,7 +47,7 @@
 										</td>
 									</tr>
 									<tr>
-										<th><img src="img/icon-03.png" /></th>
+				                        <th><img src="img/icon-03.png" /></th>
 										<td>
 											<p><span id="preEventsNumber">1</span></p>
 											<p>上月新增地面塌陷事故</p>
@@ -61,21 +62,21 @@
 										<th><img src="img/icon-05.png" /></th>
 										<td>
 											<p><span id="currentEventsNumber">0</span></p>
-											<p>本月新增地面塌陷事故</p>
+										    <p>本月新增地面塌陷事故</p>
 										</td>
 										<th><img src="img/icon-06.png" /></th>
 										<td>
 											<p><span id="currentLocationofRisks">10</span></p>
-											<p>本月新增灾害隐患点</p>
-										</td>
+											<p>本月新增灾害隐患点</p> -->
+										<!-- </td>
 									</tr>
-								</table>
+								</table> --> 
 							</div>
 						</div>
-					</div>
+					</div> 
 					<div class="flex-cell flex-cell-r" style="padding-left:0;">
 						<div class="chart-wrapper">
-							<h3 class="chart-title">各区风险区划</h3>
+							<h3 class="chart-title"> 各区风险区划</h3>
 							<div class="chart-div" id="mapChart">
 								<div class="chart-loader"><div class="loader"></div></div>
 							</div>
@@ -107,6 +108,7 @@
 		<script type="text/javascript" src="js/countUp.min.js"></script>
 		<script type="text/javascript" src="js/echarts.min.js"></script>
 		<script type="text/javascript" src="js/echarts-map-china.js"></script>
+		<script type="text/javascript" src="js/echarts-map-jiangsu.js"></script>
 		<script type="text/javascript" src="js/echarts-theme-shine.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -120,20 +122,20 @@
 				})();
 				
 				//获取统计数据
-				$.ajax({
-					url: "data/count-data.json",
-					dataType: "json"
-				}).done(function(data) {
-					//console.log('Data: ', data);
-					rollNum("totalEventsNumber", 0, data.total_events_number);
-					rollNum("totalLocationofRisks", 0, data.total_location_of_risks);
-					rollNum("preEventsNumber", 0, data.pre_events_number);
-					rollNum("preLocationofRisks", 0, data.pre_location_of_risks);
-					rollNum("currentEventsNumber", 0, data.current_events_number);
-					rollNum("currentLocationofRisks", 0, data.current_location_of_risks);
-				}).fail(function(jqXHR, textStatus) {
-					console.log("Ajax Error: ", textStatus);
-				});
+				// $.ajax({
+				// 	url: "data/count-data.json",
+				// 	dataType: "json"
+				// }).done(function(data) {
+				// 	//console.log('Data: ', data);
+				// 	rollNum("totalEventsNumber", 0, data.total_events_number);
+				// 	rollNum("totalLocationofRisks", 0, data.total_location_of_risks);
+				// 	rollNum("preEventsNumber", 0, data.pre_events_number);
+				// 	rollNum("preLocationofRisks", 0, data.pre_location_of_risks);
+				// 	rollNum("currentEventsNumber", 0, data.current_events_number);
+				// 	rollNum("currentLocationofRisks", 0, data.current_location_of_risks);
+				// }).fail(function(jqXHR, textStatus) {
+				// 	console.log("Ajax Error: ", textStatus);
+				// });
 				
 				//获取排行数据
 				const rankChart = echarts.init(document.getElementById("rankChart"), "shine");
@@ -235,7 +237,7 @@
 					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
 				});
 				
-				//获取地域分布数据
+				//获取全国地域分布数据
 				const mapChart = echarts.init(document.getElementById("mapChart"), "shine");
 				const mapChartOpt = {
 					tooltip: {
@@ -306,6 +308,88 @@
 					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
 				});
 				
+				//获取江苏地域分布数据
+				const mapChart2 = echarts.init(document.getElementById("mapChart2"), "shine");
+				const mapChart2Opt = {
+					tooltip: {
+						formatter: function(params) {
+							const data = params.data;
+							return data.name + "<br />Level：" + data.value;
+						}
+					},
+					visualMap: {
+						type: "piecewise",
+						// splitNumber: 4,
+						// itemWidth: 10,
+						// itemHeight: 10,
+						// itemGap: 5,
+						// textGap: 5,
+						   textStyle: {
+						   fontSize: 10,
+						   color: "#b0c2f9",
+						   },
+						// min: 1,
+						// max: 5,
+						precision:0,
+					    calculable: true,
+						seriesIndex: [0],
+						pieces:[
+						{value:1,label:"level1",color:'rgb(0,50,200)'} ,
+						{value:2,label:"level2",color:'rgb(0,120,120)'} ,
+						{value:3,label:"level3",color:'yellow'} ,
+						{value:4,label:"level4",color:'orange'} ,
+						{value:5,label:"level5",color:'red'} 
+						]
+						 
+					},
+					geo: {
+						map: "jiangsu",
+						roam: true, //开启鼠标缩放和漫游
+						zoom: 1, //地图缩放级别
+						selectedMode: "single",
+						
+						top:10,
+						bottom: 10,
+						layoutCenter: ["50%", "50%"],
+						layoutSize: "100%", //保持地图宽高比
+						label: {
+							show: true,
+							fontSize: 10,
+							color: "#ceac09"
+						}
+					},
+					series: [{
+						name: "地域分布",
+						type: "map",
+						geoIndex: 0
+					}]
+				};
+				mapChart2.setOption(mapChart2Opt);
+				$.ajax({
+					url: "http://127.0.0.1:8000/daping/region_dengjiange",
+					dataType: "json"
+				}).done(function() {
+					$("#mapChart2").addClass("chart-done");
+				}).done(function(data) {
+					//console.log('Data: ', data);
+					const chartData = [];
+					for(let i in data) {
+						chartData.push({
+							name: i,
+						 	value: data[i]
+						});
+					}
+					mapChart2.setOption({
+						series: [{
+							name: "地域分布",
+							data: chartData
+						}]
+					});
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+
+
 				//获取月度事件情况数据
 				const trendChart = echarts.init(document.getElementById("trendChart"), "shine");
 				const trendChartOpt = {
@@ -330,10 +414,12 @@
 						top: 40,
 						bottom: 50,
 						left: 30,
-						right: 30
+						right: 40
 					},
 					xAxis: {
 						type: "category",
+						name: "月份",
+						
 						axisLine: {
 							lineStyle: {color: "#b0c2f9"}
 						},
@@ -347,6 +433,7 @@
 						name: "事件总量",
 						type: "value",
 						splitNumber: 5,
+						interval: 1,
 						axisLine: {
 							lineStyle: {color: "#b0c2f9"}
 						},
