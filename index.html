@@ -76,7 +76,7 @@
 					</div> 
 					<div class="flex-cell flex-cell-r" style="padding-left:0;">
 						<div class="chart-wrapper">
-							<h3 class="chart-title"> 各区塌陷事件横比</h3>
+							<h3 class="chart-title"> 各省塌陷事件横比</h3>
 							<div class="chart-div" id="mapChart">
 								<div class="chart-loader"><div class="loader"></div></div>
 							</div>
@@ -418,7 +418,7 @@
 					},
 					xAxis: {
 						type: "category",
-						name: "月份",
+						name: "",
 						
 						axisLine: {
 							lineStyle: {color: "#b0c2f9"}
@@ -442,9 +442,9 @@
 						axisLabel: {
 							fontSize: 12,
 							color: "#b0c2f9",
-							formatter: (value, index) => {
-								return parseInt(value / 100) + "00";
-							}
+							// formatter: (value, index) => {
+							// 	return parseInt(value / 100) + "00";
+							// }
 						}
 					}, {
 						name: "平均/月度量",
